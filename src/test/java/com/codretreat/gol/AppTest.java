@@ -57,4 +57,9 @@ public class AppTest {
 		assertFalse(grid.getCell(0, 1).isAlive());
 		assertFalse(grid.getCell(1, 1).isAlive());
 	}
+	
+	@Test
+	public void test() {
+		App.main(null);
+	}
 }

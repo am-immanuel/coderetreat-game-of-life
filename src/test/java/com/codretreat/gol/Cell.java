@@ -3,6 +3,7 @@ package com.codretreat.gol;
 public class Cell {
 
 	private boolean isAlive;
+	private boolean nextAliveState;
 
 	public Cell(boolean isAlive) {
 		this.isAlive = isAlive;
@@ -13,6 +14,7 @@ public class Cell {
 	}
 
 	public void recalculate(Cell[] neighbours) {
+		nextAliveState = isAlive;
 		int numOfLivingCells = 0;
 		for (Cell c : neighbours) {
 			if (c == null) 
@@ -22,12 +24,15 @@ public class Cell {
 			}
 		}
 		if (numOfLivingCells < 2 ) {
-			isAlive = false;
+			nextAliveState = false;
 		} else if (numOfLivingCells == 3) {
-			isAlive = true;
+			nextAliveState = true;
 		}else if(numOfLivingCells > 3){
-			isAlive = false;
+			nextAliveState = false;
 		}
 	}
 
+	public void commitNextState() {
+		isAlive = nextAliveState;
+	}
 }

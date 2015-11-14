@@ -59,5 +59,39 @@ public class Grid {
 		for (Entry<Point, Cell> entry : cells.entrySet()) {
 			entry.getValue().recalculate(getNeighbours(entry.getKey()));
 		}
+		for (Cell c : cells.values()) {
+			c.commitNextState();
+		}
+		Set<Point> pointsToDelete = new HashSet<>();
+		for (Entry<Point, Cell> entry : cells.entrySet()) {
+			if (!entry.getValue().isAlive()) {
+				pointsToDelete.add(entry.getKey());
+			}
+		}
+		for (Point p : pointsToDelete) {
+			cells.remove(p);
+		}
+	}
+	
+	public boolean[][] toArray() {
+		int minX = Integer.MAX_VALUE;
+		int minY = Integer.MAX_VALUE;
+		int maxX = Integer.MIN_VALUE;
+		int maxY = Integer.MIN_VALUE;
+		for (Point p : cells.keySet()) {
+			minX = Math.min(minX, p.x);
+			minY = Math.min(minY, p.y);
+			maxX = Math.max(maxX, p.x);
+			maxY = Math.max(maxY, p.y);
+		}
+		boolean[][] result = new boolean[maxX - minX + 1][maxY - minY + 1];
+		for (int x = 0; x <= maxX - minX; x++) {
+			for (int y = 0; y <= maxY - minY; y++) {
+				Point p = new Point(x, y);
+				Cell c = cells.get(p);
+				result[x][y] = c != null && c.isAlive();
+			}
+		}
+		return result;
 	}
 }
