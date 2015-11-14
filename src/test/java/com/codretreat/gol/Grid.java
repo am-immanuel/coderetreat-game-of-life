@@ -2,68 +2,34 @@ package com.codretreat.gol;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Grid {
 
 	private Map<Point, Cell> cells = new HashMap<>();
 
+	public Grid() {
+		
+	}
+
+	public Grid(Point[] initialLivingCells) {
+		for (Point p : initialLivingCells) {
+			cells.put(p, new Cell(true));
+		}
+	}
+
 	public Cell getCell(int i, int j) {
 		Point p = new Point(i, j);
 		Cell result = cells.get(p);
 		if (result == null) {
-			result = new Cell(p);
+			result = new Cell(false);
 			cells.put(p, result);
 		}
 		return result;
 	}
 
-	public class Point {
-		public final int x;
-		public final int y;
-
-		public Point(int x, int y) {
-			super();
-			this.x = x;
-			this.y = y;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + getOuterType().hashCode();
-			result = prime * result + x;
-			result = prime * result + y;
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Point other = (Point) obj;
-			if (!getOuterType().equals(other.getOuterType()))
-				return false;
-			if (x != other.x)
-				return false;
-			if (y != other.y)
-				return false;
-			return true;
-		}
-
-		private Grid getOuterType() {
-			return Grid.this;
-		}
-
-	}
-
-	public Cell[] getNeighbours(Cell cell) {
+	private Cell[] getNeighbours(Point p) {
 		Cell[] result = new Cell[8];
-		Point p = cell.getPoint();
 		result[0] = getCell(p.x - 1, p.y - 1);
 		result[2] = getCell(p.x - 1, p.y + 1);
 		result[5] = getCell(p.x + 1, p.y - 1);
@@ -73,5 +39,12 @@ public class Grid {
 		result[1] = getCell(p.x - 1, p.y);
 		result[6] = getCell(p.x + 1, p.y);
 		return result;
+	}
+
+	public void recalculate() {
+		for(Entry<Point, Cell> entry: cells.entrySet()){
+			entry.getValue().recalculate(getNeighbours(entry.getKey()));
+		}
+		
 	}
 }

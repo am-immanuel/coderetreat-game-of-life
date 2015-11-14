@@ -1,27 +1,27 @@
 package com.codretreat.gol;
 
-import com.codretreat.gol.Grid.Point;
-
 public class Cell {
 
-	private Point point;
 	private boolean isAlive;
 
-	public Cell(Grid.Point p) {
-		this.point = p;
-		this.isAlive = false;
+	public Cell(Point p, boolean isAlive) {
+		this(isAlive);
 	}
 
-	public Point getPoint() {
-		return point;
+	public Cell(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 
 	public boolean isAlive() {
 		return this.isAlive;
 	}
 
-	public void setAlive(boolean b) {
+	public boolean isLonely() {
 		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void recalculate(Cell[] neighbours) {
 		
 	}
 	
