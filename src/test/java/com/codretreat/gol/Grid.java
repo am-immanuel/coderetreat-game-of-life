@@ -7,13 +7,14 @@ public class Grid {
 
 	private Map<Point, Cell> cells = new HashMap<>();
 	
-	public Grid(){
-		Point p = new Point(0, 0);
-		cells.put(p, new Cell(p));
-	}
-	
 	public Cell getCell(int i, int j) {
-		return cells.get(new Point(i, j));
+		Point p = new Point(i, j);
+		Cell result = cells.get(p);
+		if (result == null) {
+			result = new Cell(p);
+			cells.put(p, result);
+		}
+		return result;
 	}
 
 	public class Point {
@@ -59,8 +60,16 @@ public class Grid {
 	}
 
 	public Cell[] getNeighbours(Cell cell) {
-		Cell[] result = new Cell[6];
-		
+		Cell[] result = new Cell[8];
+		Point p = cell.getPoint();
+		result[0] = getCell(p.x -1, p.y -1);
+		result[1] = getCell(p.x -1, p.y );
+		result[2] = getCell(p.x -1, p.y + 1);
+		result[3] = getCell(p.x, p.y -1);
+		result[4] = getCell(p.x, p.y +1);
+		result[5] = getCell(p.x + 1, p.y -1);
+		result[6] = getCell(p.x  +1, p.y);
+		result[7] = getCell(p.x  +1, p.y + 1);
 		return result;
 	}
 }

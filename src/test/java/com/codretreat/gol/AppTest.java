@@ -12,13 +12,15 @@ public class AppTest
 		assertNotNull(cell);
 		assertNotNull(cell.getPoint());
 		assertNotNull(grid.getNeighbours(cell));
-		assertEquals(6, grid.getNeighbours(cell).length);
+		assertEquals(8, grid.getNeighbours(cell).length);
 		
 	}
 	@Test
 	public void testGetNeighbours(){
 		Grid grid = new Grid();
 		Cell cell = grid.getCell(0, 0);
-		
+		for (Cell c : grid.getNeighbours(cell)) {
+			assertNotNull(c);
+		}
 	}
 }
