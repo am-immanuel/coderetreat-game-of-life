@@ -4,10 +4,6 @@ public class Cell {
 
 	private boolean isAlive;
 
-	public Cell(Point p, boolean isAlive) {
-		this(isAlive);
-	}
-
 	public Cell(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
@@ -16,21 +12,20 @@ public class Cell {
 		return this.isAlive;
 	}
 
-	public boolean isLonely() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	public void recalculate(Cell[] neighbours) {
 		int numOfLivingCells = 0;
-		for(Cell c: neighbours){
-			if(c.isAlive()){
+		for (Cell c : neighbours) {
+			if (c == null) 
+				continue;
+			if (c.isAlive()) {
 				numOfLivingCells++;
 			}
 		}
-		if(numOfLivingCells <2){
+		if (numOfLivingCells < 2) {
 			isAlive = false;
+		} else if (numOfLivingCells > 2) {
+			isAlive = true;
 		}
 	}
-	
+
 }

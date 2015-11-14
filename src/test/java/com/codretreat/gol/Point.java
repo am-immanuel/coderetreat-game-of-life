@@ -9,6 +9,19 @@ public class Point {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public Point[] getNeighbours() {
+		Point[] result = new Point[8];
+		result[0] = new Point(x - 1, y - 1);
+		result[2] = new Point(x - 1, y + 1);
+		result[5] = new Point(x + 1, y - 1);
+		result[7] = new Point(x + 1, y + 1);
+		result[3] = new Point(x, y - 1);
+		result[4] = new Point(x, y + 1);
+		result[1] = new Point(x - 1, y);
+		result[6] = new Point(x + 1, y);
+		return result;
+	}
 
 	@Override
 	public int hashCode() {
