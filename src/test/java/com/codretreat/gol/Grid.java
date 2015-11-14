@@ -58,8 +58,9 @@ public class Grid {
 				
 	}
 
-	public Object getNeighbours(Cell cell) {
+	public Cell[] getNeighbours(Cell cell) {
+		Cell[] result = new Cell[6];
 		
-		return new Object();
+		return result;
 	}
 }
