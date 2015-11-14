@@ -11,5 +11,6 @@ public class AppTest
 		Cell cell = grid.getCell(0, 0);
 		assertNotNull(cell);
 		assertNotNull(cell.getPoint());
+		assertNotNull(grid.getNeighbours(cell));
 	}
 }

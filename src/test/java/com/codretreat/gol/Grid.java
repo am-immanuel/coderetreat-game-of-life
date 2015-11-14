@@ -57,4 +57,9 @@ public class Grid {
 		}
 				
 	}
+
+	public Object getNeighbours(Cell cell) {
+		
+		return new Object();
+	}
 }
