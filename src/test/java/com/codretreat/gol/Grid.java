@@ -8,14 +8,15 @@ public class Grid {
 	private Map<Point, Cell> cells = new HashMap<>();
 	
 	public Grid(){
-		cells.put(new Point(0, 0), new Cell());
+		Point p = new Point(0, 0);
+		cells.put(p, new Cell(p));
 	}
 	
 	public Cell getCell(int i, int j) {
 		return cells.get(new Point(i, j));
 	}
 
-	private class Point {
+	public class Point {
 		public final int x;
 		public final int y;
 		public Point(int x, int y) {
