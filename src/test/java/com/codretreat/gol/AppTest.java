@@ -22,5 +22,7 @@ public class AppTest {
     Row zeroRow = initBoard.getRow(0);
     Cell cell = zeroRow.getCell(0);
     assertNotNull(cell);
+    assertNotNull(initBoard.getRow(-1));
+    assertNotNull(initBoard.getRow(1));
   }
 }
