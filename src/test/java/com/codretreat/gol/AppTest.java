@@ -18,6 +18,7 @@ public class AppTest {
 		Cell cell = grid.getCell(0, 0);
 		assertNotNull(cell);
 		assertTrue(cell.isAlive());
+		assertFalse(grid.getCell(0, 1).isAlive());
 	}
 
 

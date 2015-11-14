@@ -22,7 +22,15 @@ public class Cell {
 	}
 
 	public void recalculate(Cell[] neighbours) {
-		
+		int numOfLivingCells = 0;
+		for(Cell c: neighbours){
+			if(c.isAlive()){
+				numOfLivingCells++;
+			}
+		}
+		if(numOfLivingCells <2){
+			isAlive = false;
+		}
 	}
 	
 }
