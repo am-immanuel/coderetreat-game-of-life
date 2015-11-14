@@ -13,7 +13,7 @@ public class AppTest
 		assertNotNull(cell.getPoint());
 		assertNotNull(grid.getNeighbours(cell));
 		assertEquals(8, grid.getNeighbours(cell).length);
-		
+		assertFalse(cell.isAlive());
 	}
 	@Test
 	public void testGetNeighbours(){

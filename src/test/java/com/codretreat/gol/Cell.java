@@ -13,4 +13,8 @@ public class Cell {
 	public Point getPoint() {
 		return point;
 	}
+
+	public boolean isAlive() {
+		return false;
+	}
 }
