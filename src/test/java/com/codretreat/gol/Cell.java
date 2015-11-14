@@ -21,10 +21,12 @@ public class Cell {
 				numOfLivingCells++;
 			}
 		}
-		if (numOfLivingCells < 2) {
+		if (numOfLivingCells < 2 ) {
 			isAlive = false;
-		} else if (numOfLivingCells > 2) {
+		} else if (numOfLivingCells == 3) {
 			isAlive = true;
+		}else if(numOfLivingCells > 3){
+			isAlive = false;
 		}
 	}
 

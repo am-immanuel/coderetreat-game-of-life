@@ -37,4 +37,12 @@ public class AppTest {
 		grid.recalculate();
 		assertTrue(cell.isAlive());
 	}
+	
+	@Test
+	public void testOverCrowding(){
+		Grid grid = new Grid(new Point[] { new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 2) });
+		Cell cell = grid.getCell(1, 1);
+		grid.recalculate();
+		assertFalse(cell.isAlive());
+	}
 }
